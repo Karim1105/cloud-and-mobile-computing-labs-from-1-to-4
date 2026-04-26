@@ -1,0 +1,56 @@
+PROBE_POD=lab3-web-probe-6f45cc9c66-55b5t
+--- BEFORE ---
+NAME                              READY   STATUS    RESTARTS   AGE     IP            NODE                         NOMINATED NODE   READINESS GATES
+lab3-web-7bb75499ff-jx4l8         1/1     Running   0          7m45s   10.244.0.13   lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-phftm         1/1     Running   0          21m     10.244.0.6    lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-vmvlh         1/1     Running   0          16m     10.244.0.12   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-55b5t   1/1     Running   0          20m     10.244.0.10   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-fgwxn   1/1     Running   0          20m     10.244.0.9    lab3-cluster-control-plane   <none>           <none>
+--- AFTER ---
+NAME                              READY   STATUS    RESTARTS   AGE    IP            NODE                         NOMINATED NODE   READINESS GATES
+lab3-web-7bb75499ff-jx4l8         1/1     Running   0          8m5s   10.244.0.13   lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-phftm         1/1     Running   0          21m    10.244.0.6    lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-vmvlh         1/1     Running   0          16m    10.244.0.12   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-55b5t   1/1     Running   0          20m    10.244.0.10   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-fgwxn   1/1     Running   0          20m    10.244.0.9    lab3-cluster-control-plane   <none>           <none>
+--- DESCRIBE ---
+    Image:          lab3-multi
+    Image ID:       sha256:0f38e662a417100ba6050a7f0c51aa5128ac43978e5deb2e933b0c2611349bb6
+    Port:           5000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Apr 2026 02:49:00 +0300
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:5000/health delay=10s timeout=1s period=10s #success=1 #failure=3
+    Readiness:      http-get http://:5000/health delay=3s timeout=1s period=5s #success=1 #failure=3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-nl6cn (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-nl6cn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason             Age                 From               Message
+  ----     ------             ----                ----               -------
+  Normal   Scheduled          20m                 default-scheduler  Successfully assigned default/lab3-web-probe-6f45cc9c66-55b5t to lab3-cluster-control-plane
+  Warning  Failed             18m (x12 over 20m)  kubelet            spec.containers{web}: Error: ErrImageNeverPull
+  Warning  ErrImageNeverPull  18m (x13 over 20m)  kubelet            spec.containers{web}: Container image "lab3-multi" is not present with pull policy of Never
+  Normal   Pulled             17m                 kubelet            spec.containers{web}: Container image "lab3-multi" already present on machine and can be accessed by the pod
+  Normal   Created            17m                 kubelet            spec.containers{web}: Container created
+  Normal   Started            17m                 kubelet            spec.containers{web}: Container started

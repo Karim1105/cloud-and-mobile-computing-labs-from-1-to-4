@@ -1,0 +1,18 @@
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme1n1p5  225G   83G  141G  37% /
+devtmpfs        7.4G     0  7.4G   0% /dev
+tmpfs           7.5G  362M  7.2G   5% /dev/shm
+efivarfs        148K   97K   47K  68% /sys/firmware/efi/efivars
+tmpfs           3.0G  1.9M  3.0G   1% /run
+none            1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+none            1.0M     0  1.0M   0% /run/credentials/systemd-resolved.service
+tmpfs           7.5G   76M  7.5G   1% /tmp
+/dev/nvme1n1p5  225G   83G  141G  37% /root
+/dev/nvme1n1p5  225G   83G  141G  37% /srv
+/dev/nvme1n1p5  225G   83G  141G  37% /home
+/dev/nvme1n1p5  225G   83G  141G  37% /var/cache
+/dev/nvme1n1p5  225G   83G  141G  37% /var/log
+/dev/nvme1n1p5  225G   83G  141G  37% /var/tmp
+/dev/nvme1n1p6  4.9G  1.5G  3.5G  30% /boot
+tmpfs           1.5G  104K  1.5G   1% /run/user/1000
+/dev/nvme0n1p2  477G  254G  224G  54% /run/media/crankylama/shared drive

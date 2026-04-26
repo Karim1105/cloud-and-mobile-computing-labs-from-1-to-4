@@ -1,0 +1,94 @@
+--- DOCKER COMPOSE BUILD & UP ---
+time="2026-04-26T03:04:12+03:00" level=warning msg="Docker Compose requires buildx plugin to be installed"
+ Image week4-lab-product-service Building 
+ Image week4-lab-product-service Building 
+Sending build context to Docker daemon  1.485kB
+Step 1/8 : FROM python:3.12-slim
+ ---> 46cb7cc2877e
+Step 2/8 : WORKDIR /app
+ ---> Using cache
+ ---> c1bae537eeac
+Step 3/8 : COPY requirements.txt .
+ ---> Using cache
+ ---> b415406fd7de
+Step 4/8 : RUN pip install --no-cache-dir -r requirements.txt
+ ---> Using cache
+ ---> 662802736ef1
+Step 5/8 : COPY app.py .
+ ---> Using cache
+ ---> f711205f3621
+Step 6/8 : EXPOSE 5001
+ ---> Using cache
+ ---> e09585f65c18
+Step 7/8 : CMD ["python", "app.py"]
+ ---> Using cache
+ ---> 6133bce399b5
+Step 8/8 : LABEL com.docker.compose.image.builder=classic
+ ---> Using cache
+ ---> bb54fd24fcef
+Successfully built bb54fd24fcef
+Successfully tagged week4-lab-product-service:latest
+ Image week4-lab-product-service Built 
+ Image week4-lab-product-service Built 
+ Image week4-lab-order-service Building 
+ Image week4-lab-order-service Building 
+Sending build context to Docker daemon  2.541kB
+Step 1/8 : FROM python:3.12-slim
+ ---> 46cb7cc2877e
+Step 2/8 : WORKDIR /app
+ ---> Using cache
+ ---> c1bae537eeac
+Step 3/8 : COPY requirements.txt .
+ ---> Using cache
+ ---> 29eab8f63160
+Step 4/8 : RUN pip install --no-cache-dir -r requirements.txt
+ ---> Using cache
+ ---> 96943044fc4a
+Step 5/8 : COPY app.py .
+ ---> Using cache
+ ---> edfa3aefdfc9
+Step 6/8 : EXPOSE 5002
+ ---> Using cache
+ ---> 030a4e9b6ae2
+Step 7/8 : CMD ["python", "app.py"]
+ ---> Using cache
+ ---> e61cae4fa635
+Step 8/8 : LABEL com.docker.compose.image.builder=classic
+ ---> Using cache
+ ---> f70c468b5a66
+Successfully built f70c468b5a66
+Successfully tagged week4-lab-order-service:latest
+ Image week4-lab-order-service Built 
+ Image week4-lab-order-service Built 
+ Container product-service Running 
+ Container order-service Running 
+--- CONTAINERS ---
+NAME              IMAGE                       COMMAND           SERVICE           CREATED         STATUS                   PORTS
+order-service     week4-lab-order-service     "python app.py"   order-service     3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:5002->5002/tcp, [::]:5002->5002/tcp
+product-service   week4-lab-product-service   "python app.py"   product-service   3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:5001->5001/tcp, [::]:5001->5001/tcp
+--- CONTAINER HEALTH ---
+/product-service healthy
+/order-service healthy
+--- ORDER SERVICE HEALTH ---
+{"service":"order-service","status":"up"}
+
+--- PRODUCT SERVICE HEALTH ---
+{"service":"product-service","status":"up"}
+
+--- CREATE ORDER ---
+{"message":"Order created","product":"Phone","quantity":3,"total_price":1950}
+
+--- SIMULATE FAILURE: STOP PRODUCT SERVICE ---
+product-service
+--- ORDER AFTER FAILURE ---
+{"error":"product-service unavailable"}
+
+--- RESTART PRODUCT SERVICE ---
+product-service
+--- ORDER AFTER RECOVERY ---
+{"message":"Order created","product":"Phone","quantity":3,"total_price":1950}
+
+--- FINAL CONTAINERS ---
+NAME              IMAGE                       COMMAND           SERVICE           CREATED         STATUS                            PORTS
+order-service     week4-lab-order-service     "python app.py"   order-service     4 minutes ago   Up 4 minutes (healthy)            0.0.0.0:5002->5002/tcp, [::]:5002->5002/tcp
+product-service   week4-lab-product-service   "python app.py"   product-service   4 minutes ago   Up 5 seconds (health: starting)   0.0.0.0:5001->5001/tcp, [::]:5001->5001/tcp

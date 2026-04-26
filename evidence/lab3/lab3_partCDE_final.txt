@@ -1,0 +1,144 @@
+--- CLUSTER INFO ---
+Kubernetes control plane is running at https://127.0.0.1:34865
+CoreDNS is running at https://127.0.0.1:34865/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+--- DEPLOYMENTS ---
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+lab3-web         3/3     3            3           13m
+lab3-web-probe   2/2     2            2           12m
+--- PODS ---
+NAME                              READY   STATUS    RESTARTS   AGE     IP            NODE                         NOMINATED NODE   READINESS GATES
+lab3-web-7bb75499ff-ms8z8         1/1     Running   0          10m     10.244.0.11   lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-phftm         1/1     Running   0          13m     10.244.0.6    lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-vmvlh         1/1     Running   0          8m31s   10.244.0.12   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-55b5t   1/1     Running   0          12m     10.244.0.10   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-fgwxn   1/1     Running   0          12m     10.244.0.9    lab3-cluster-control-plane   <none>           <none>
+--- SERVICE ACCESS ---
+PORTFORWARD PID 52211
+curl /
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0*   Trying 127.0.0.1:8080...
+* Established connection to 127.0.0.1 (127.0.0.1 port 8080) from 127.0.0.1 port 45960 
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: 127.0.0.1:8080
+> User-Agent: curl/8.19.0
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Server: Werkzeug/3.1.8 Python/3.12.13
+< Date: Sat, 25 Apr 2026 23:58:02 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 17
+< Connection: close
+< 
+{ [17 bytes data]
+100     17 100     17   0      0   2109      0                              0100     17 100     17   0      0   1945      0                              0100     17 100     17   0      0   1837      0                              0
+* shutting down connection #0
+Hello from Lab 3
+curl /health
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0*   Trying 127.0.0.1:8080...
+* Established connection to 127.0.0.1 (127.0.0.1 port 8080) from 127.0.0.1 port 45972 
+* using HTTP/1.x
+> GET /health HTTP/1.1
+> Host: 127.0.0.1:8080
+> User-Agent: curl/8.19.0
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Server: Werkzeug/3.1.8 Python/3.12.13
+< Date: Sat, 25 Apr 2026 23:58:02 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 3
+< Connection: close
+< 
+{ [3 bytes data]
+100      3 100      3   0      0    459      0                              0100      3 100      3   0      0    423      0                              0100      3 100      3   0      0    391      0                              0
+* shutting down connection #0
+ok
+kill port-forward
+--- SELF-HEALING WITHOUT PROBES ---
+delete pod: lab3-web-7bb75499ff-ms8z8
+pod "lab3-web-7bb75499ff-ms8z8" deleted from default namespace
+NAME                              READY   STATUS    RESTARTS   AGE     IP            NODE                         NOMINATED NODE   READINESS GATES
+lab3-web-7bb75499ff-jx4l8         1/1     Running   0          50s     10.244.0.13   lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-phftm         1/1     Running   0          14m     10.244.0.6    lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-vmvlh         1/1     Running   0          9m29s   10.244.0.12   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-55b5t   1/1     Running   0          13m     10.244.0.10   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-fgwxn   1/1     Running   0          13m     10.244.0.9    lab3-cluster-control-plane   <none>           <none>
+--- PROBES DEPLOYMENT ---
+probe pod: lab3-web-probe-6f45cc9c66-55b5t
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-nl6cn (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-nl6cn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason             Age                 From               Message
+  ----     ------             ----                ----               -------
+  Normal   Scheduled          13m                 default-scheduler  Successfully assigned default/lab3-web-probe-6f45cc9c66-55b5t to lab3-cluster-control-plane
+  Warning  Failed             11m (x12 over 13m)  kubelet            spec.containers{web}: Error: ErrImageNeverPull
+  Warning  ErrImageNeverPull  10m (x13 over 13m)  kubelet            spec.containers{web}: Container image "lab3-multi" is not present with pull policy of Never
+  Normal   Pulled             9m56s               kubelet            spec.containers{web}: Container image "lab3-multi" already present on machine and can be accessed by the pod
+  Normal   Created            9m56s               kubelet            spec.containers{web}: Container created
+  Normal   Started            9m56s               kubelet            spec.containers{web}: Container started
+kill probe container main process
+NAME                              READY   STATUS    RESTARTS   AGE     IP            NODE                         NOMINATED NODE   READINESS GATES
+lab3-web-7bb75499ff-jx4l8         1/1     Running   0          71s     10.244.0.13   lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-phftm         1/1     Running   0          14m     10.244.0.6    lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-vmvlh         1/1     Running   0          9m50s   10.244.0.12   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-55b5t   1/1     Running   0          13m     10.244.0.10   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-fgwxn   1/1     Running   0          13m     10.244.0.9    lab3-cluster-control-plane   <none>           <none>
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-nl6cn (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-nl6cn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason             Age                 From               Message
+  ----     ------             ----                ----               -------
+  Normal   Scheduled          13m                 default-scheduler  Successfully assigned default/lab3-web-probe-6f45cc9c66-55b5t to lab3-cluster-control-plane
+  Warning  Failed             11m (x12 over 13m)  kubelet            spec.containers{web}: Error: ErrImageNeverPull
+  Warning  ErrImageNeverPull  11m (x13 over 13m)  kubelet            spec.containers{web}: Container image "lab3-multi" is not present with pull policy of Never
+  Normal   Pulled             10m                 kubelet            spec.containers{web}: Container image "lab3-multi" already present on machine and can be accessed by the pod
+  Normal   Created            10m                 kubelet            spec.containers{web}: Container created
+  Normal   Started            10m                 kubelet            spec.containers{web}: Container started
+--- LAB 3 KIND DEPLOYMENT COMPLETE ---

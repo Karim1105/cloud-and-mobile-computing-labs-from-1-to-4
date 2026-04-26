@@ -1,0 +1,17 @@
+$ docker --version
+/usr/bin/bash: line 2: docker: command not found
+
+$ docker compose version
+/usr/bin/bash: line 3: docker: command not found
+
+$ kind version
+/usr/bin/bash: line 4: kind: command not found
+
+$ kubectl version --client
+/usr/bin/bash: line 5: kubectl: command not found
+
+$ multipass version
+/usr/bin/bash: line 6: multipass: command not found
+
+$ sudo -n true
+sudo: a password is required

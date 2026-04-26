@@ -1,0 +1,6 @@
+NAME          IMAGE                         COMMAND                  SERVICE       CREATED          STATUS          PORTS
+etcd1         quay.io/coreos/etcd:v3.5.15   "/usr/local/bin/etcd…"   etcd1         46 seconds ago   Up 10 seconds   0.0.0.0:2379->2379/tcp, [::]:2379->2379/tcp, 2380/tcp
+etcd2         quay.io/coreos/etcd:v3.5.15   "/usr/local/bin/etcd…"   etcd2         46 seconds ago   Up 45 seconds   2379-2380/tcp
+etcd3         quay.io/coreos/etcd:v3.5.15   "/usr/local/bin/etcd…"   etcd3         46 seconds ago   Up 45 seconds   2379-2380/tcp
+redis-node1   redis:7                       "docker-entrypoint.s…"   redis-node1   46 seconds ago   Up 45 seconds   0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp
+redis-node2   redis:7                       "docker-entrypoint.s…"   redis-node2   46 seconds ago   Up 44 seconds   0.0.0.0:6380->6379/tcp, [::]:6380->6379/tcp

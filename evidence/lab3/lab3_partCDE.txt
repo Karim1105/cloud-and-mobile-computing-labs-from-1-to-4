@@ -1,0 +1,14 @@
+--- LAB 3 DEPLOYMENT ---
+--- NODES BEFORE LABEL ---
+NAME                         STATUS   ROLES           AGE   VERSION   LABELS
+lab3-cluster-control-plane   Ready    control-plane   85s   v1.35.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=lab3-cluster-control-plane,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=
+--- LABEL NODES ---
+node/lab3-cluster-control-plane labeled
+--- NODES AFTER LABEL ---
+NAME                         STATUS   ROLES           AGE   VERSION   LABELS
+lab3-cluster-control-plane   Ready    control-plane   85s   v1.35.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=lab3-cluster-control-plane,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node-role=general
+--- APPLY DEPLOYMENT ---
+deployment.apps/lab3-web created
+--- APPLY SERVICE ---
+service/lab3-web-svc created
+--- DEPLOYMENTS ---

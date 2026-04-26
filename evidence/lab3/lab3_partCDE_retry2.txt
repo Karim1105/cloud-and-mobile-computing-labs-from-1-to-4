@@ -1,0 +1,17 @@
+--- CLUSTER INFO ---
+Kubernetes control plane is running at https://127.0.0.1:34865
+CoreDNS is running at https://127.0.0.1:34865/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+--- DEPLOYMENTS ---
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+lab3-web         0/3     3            0           2m47s
+lab3-web-probe   0/2     2            0           107s
+--- PODS ---
+NAME                              READY   STATUS              RESTARTS   AGE     IP            NODE                         NOMINATED NODE   READINESS GATES
+lab3-web-7bb75499ff-2llqn         0/1     ErrImageNeverPull   0          2m3s    10.244.0.8    lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-fcb8m         0/1     ErrImageNeverPull   0          2m47s   10.244.0.5    lab3-cluster-control-plane   <none>           <none>
+lab3-web-7bb75499ff-phftm         0/1     ErrImageNeverPull   0          2m47s   10.244.0.6    lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-55b5t   0/1     ErrImageNeverPull   0          107s    10.244.0.10   lab3-cluster-control-plane   <none>           <none>
+lab3-web-probe-6f45cc9c66-fgwxn   0/1     ErrImageNeverPull   0          107s    10.244.0.9    lab3-cluster-control-plane   <none>           <none>
+--- SERVICE ACCESS ---

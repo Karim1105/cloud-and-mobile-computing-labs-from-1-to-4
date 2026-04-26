@@ -1,0 +1,5 @@
+--- PART A: CGROUP LIMITS WITH DOCKER STATS ---
+container=5e3638c9870e8510f473c711ff8cf13fe4b9e6823975aa3b37cfe1e5db36e44f
+CONTAINER ID   NAME           CPU %     MEM USAGE / LIMIT   MEM %     NET I/O          BLOCK I/O     PIDS
+5e3638c9870e   cgroup-test2   12.00%    9.297MiB / 256MiB   3.63%     46.8MB / 861kB   0B / 90.6MB   6
+cgroup-test2

@@ -1,0 +1,28 @@
+--- PART A: NAMESPACE AND CGROUP OBSERVATION (RETRY) ---
+1e578aa4e095
+---
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 23:37 ?        00:00:00 bash -c apt-get update >/dev/null 2>&1 && apt-get install -y iproute2 >/dev/null 2>&1 && sleep 30
+root           7       1  0 23:37 ?        00:00:00 apt-get update
+_apt          10       7  0 23:37 ?        00:00:00 /usr/lib/apt/methods/http
+_apt          11       7  0 23:37 ?        00:00:00 /usr/lib/apt/methods/http
+root          18       0  0 23:37 ?        00:00:00 ps -ef
+---
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ip": executable file not found in $PATH
+---
+overlay on / type overlay (rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/67/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/62/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/68/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/68/work,index=off)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev type tmpfs (rw,nosuid,size=65536k,mode=755,inode64,huge=within_size)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=666)
+sysfs on /sys type sysfs (ro,nosuid,nodev,noexec,relatime)
+cgroup on /sys/fs/cgroup type cgroup2 (ro,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot,memory_hugetlb_accounting)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime)
+shm on /dev/shm type tmpfs (rw,nosuid,nodev,noexec,relatime,size=65536k,inode64,huge=within_size)
+/dev/nvme1n1p5 on /etc/resolv.conf type btrfs (rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@)
+/dev/nvme1n1p5 on /etc/hostname type btrfs (rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@)
+---
+0::/
+nsdemo host PID: 13658
+UID          PID    PPID  C STIME TTY          TIME CMD
+root       13658   13635  4 02:37 ?        00:00:00 bash -c apt-get update >/dev/null 2>&1 && apt-get install -y iproute2 >/dev/null 2>&1 && sleep 30
+nsdemo

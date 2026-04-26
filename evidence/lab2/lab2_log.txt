@@ -1,0 +1,15 @@
+=== REDIS PRIMARY WRITE ===
+OK
+hello from node1
+=== REDIS REPLICA READ BEFORE FAILURE ===
+
+=== REDIS FAILURE SIMULATION ===
+redis-node2
+OK
+redis-node2
+
+=== ETCD PUT/GET ===
+OK
+foo
+bar
+etcd1

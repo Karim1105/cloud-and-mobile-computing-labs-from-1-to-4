@@ -1,0 +1,40 @@
+$ curl http://localhost:5001/health
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.8 Python/3.14.4
+Date: Sat, 25 Apr 2026 22:53:29 GMT
+Content-Type: application/json
+Content-Length: 44
+Connection: close
+
+{"service":"product-service","status":"up"}
+
+$ curl http://localhost:5001/products/1
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.8 Python/3.14.4
+Date: Sat, 25 Apr 2026 22:53:29 GMT
+Content-Type: application/json
+Content-Length: 38
+Connection: close
+
+{"id":1,"name":"Laptop","price":1200}
+
+$ curl http://localhost:5001/products/99
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/3.1.8 Python/3.14.4
+Date: Sat, 25 Apr 2026 22:53:29 GMT
+Content-Type: application/json
+Content-Length: 30
+Connection: close
+
+{"error":"Product not found"}
+
+$ curl -X POST http://localhost:5002/orders -H "Content-Type: application/json" -d {"product_id":1,"quantity":2}
+HTTP/1.1 201 CREATED
+Server: Werkzeug/3.1.8 Python/3.14.4
+Date: Sat, 25 Apr 2026 22:53:29 GMT
+Content-Type: application/json
+Content-Length: 79
+Connection: close
+
+{"message":"Order created","product":"Laptop","quantity":2,"total_price":2400}
+

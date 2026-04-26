@@ -1,0 +1,27 @@
+--- PART A: NAMESPACE AND CGROUP OBSERVATION ---
+b371f7ec8f76742ec00dc10fc830d2c9eec1eb6fa2047d66f645682a02415e13
+b371f7ec8f76
+---
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 23:36 ?        00:00:00 bash -lc hostname; echo ---; ps -ef; echo ---; ip addr; echo ---; mount | head; echo ---; cat /proc/1/cgroup
+root          10       1  0 23:36 ?        00:00:00 ps -ef
+---
+---
+overlay on / type overlay (rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/63/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/62/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/64/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/64/work,index=off)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev type tmpfs (rw,nosuid,size=65536k,mode=755,inode64,huge=within_size)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=666)
+sysfs on /sys type sysfs (ro,nosuid,nodev,noexec,relatime)
+cgroup on /sys/fs/cgroup type cgroup2 (ro,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot,memory_hugetlb_accounting)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime)
+shm on /dev/shm type tmpfs (rw,nosuid,nodev,noexec,relatime,size=65536k,inode64,huge=within_size)
+/dev/nvme1n1p5 on /etc/resolv.conf type btrfs (rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@)
+/dev/nvme1n1p5 on /etc/hostname type btrfs (rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@)
+---
+0::/
+nsdemo host PID: 0
+nsdemo
+--- PART A: CGROUP LIMITS ---
+CONTAINER ID   NAME          CPU %     MEM USAGE / LIMIT   MEM %     NET I/O          BLOCK I/O     PIDS
+3cfca09c9b3d   cgroup-test   4.50%     9.23MiB / 256MiB    3.61%     26.1MB / 392kB   0B / 39.5MB   6
+cgroup-test

@@ -1,0 +1,6 @@
+requests: 100
+min: 0.004s
+mean: 0.109s
+median: 0.080s
+max: 0.490s
+saved: latency_histogram.png
