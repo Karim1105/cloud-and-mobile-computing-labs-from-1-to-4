@@ -1,12 +1,12 @@
 Karim Mohamed Hamed Gad, group SE2.
 
-I am writing this repo README so the professor can see what is here without opening every folder. I also want to be honest: I was finishing my graduation project weggo at the same time, so this was stressful, and the work is not perfectly polished. I still did my best and kept the evidence.
+Hi and welcomed to my repo, first things first I want to be honest: I was finishing my graduation project weggo at the same time, so this was stressful, and the work is not perfectly polished. I still did my best and kept the evidence.
 
 What is in this repo
 
 lab1    - VM vs container notes plus the tail latency Flask app and benchmark
 lab2    - Redis replication and etcd Raft with Docker Compose
-lab3    - Docker image builds, local kind Kubernetes cluster, deployment, service, and self-healing checks
+lab3    - Docker image builds, local kind Kubernetes cluster, deployment, service, and self-healing checks ------> this lab bricked my arch linux install twice this was not fun
 week4-lab    - a small microservices example with product-service and order-service
 reports    - the lab reports written from my perspective
 in the evidence folder there are screenshots and text logs for each lab so the professor can verify the work
@@ -75,5 +75,5 @@ reports    - lab write-ups and reflections
 evidence    - actual output files, logs, and screenshots
 lab1, lab2, lab3, week4-lab    - the code and configs used for each lab
 
-I know this is not perfect, but I tried to keep it honest. Please check the evidence folder if you want proof without reading the reports first.
+like i said in the begining of this readme i know this is not perfect, but i did my best while managing between these assighments and my gradupation project and given its scale this was really hard to do, either thank you for the experience and enjoy :) 
 
