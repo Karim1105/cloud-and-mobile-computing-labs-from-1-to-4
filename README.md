@@ -5,10 +5,15 @@ Hi and welcomed to my repo, first things first I want to be honest: I was finish
 What is in this repo
 
 lab1    - VM vs container notes plus the tail latency Flask app and benchmark
+
 lab2    - Redis replication and etcd Raft with Docker Compose
+
 lab3    - Docker image builds, local kind Kubernetes cluster, deployment, service, and self-healing checks ------> this lab bricked my arch linux install twice this was not fun
+
 week4-lab    - a small microservices example with product-service and order-service
+
 reports    - the lab reports written from my perspective
+
 in the evidence folder there are screenshots and text logs for each lab so the professor can verify the work
 
 evidence files included
